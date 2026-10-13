@@ -1,0 +1,35 @@
+# Mapbox Studio styles used for every case, so maps share one channel look.
+# Replace the placeholders with your own style IDs from Mapbox Studio
+# (Studio → your style → Share → Style URL: mapbox://styles/<username>/<style_id>).
+# Until then, Mapbox's public styles below work for samples.
+
+username: mapbox            # your Mapbox username once custom styles exist
+styles:
+  dark: dark-v11            # e.g. replace with your channel dark style id
+  light: light-v11
+  satellite: satellite-streets-v12
+
+default_style: dark
+
+# Zoom presets for each location sample
+zooms:
+  city: 11
+  neighborhood: 14.5
+  street: 17                # pulled for PUBLIC locations only
+
+size:
+  width: 1280               # Static Images API max is 1280 per side
+  height: 720
+  retina: true              # @2x → 2560x1440 output
+
+marker:
+  color: e0262b             # hex, no #
+  size: l                   # s | l
+route:
+  color: e0262b
+  width: 4
+  opacity: 0.9
+
+# Mapbox and OpenStreetMap attribution stay on every sample and every published map.
+attribution: true
+logo: true

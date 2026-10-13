@@ -1,0 +1,2 @@
+# Copy to config.local.yaml (git-ignored) and set your own path.
+media_root: "~/Library/CloudStorage/GoogleDrive-YOUR_ACCOUNT/My Drive/True Crime Channel"

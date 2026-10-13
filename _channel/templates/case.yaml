@@ -1,0 +1,25 @@
+case_id: "{CASE_ID}"
+case_folder: "{CASE_FOLDER}"
+working_title: "{TITLE}"
+status: Backlog
+runtime_target_min: 45
+geocode_country: us
+
+principals: []
+#  - name: ""
+#    role: victim | suspect | witness | investigator | other
+#    lens: POV_ACTIONCAM | POV_GLASSES | POV_DASH | null
+
+lenses: {}            # filled at Stage 2: { "<principal name>": "POV_ACTIONCAM" }
+
+recreation_candidates: []   # approved at Stage 2
+#  - id: R001
+#    moment: ""
+#    exhibit: E02
+#    lens: POV_ACTIONCAM
+#    grounding_source: ""
+#    reference_images: []
+
+key_locations: []     # location_ids approved at Stage 2, e.g. [L01, L03]
+
+routes: []            # location pairs the timeline connects, for route samples: [[L01, L02], [L02, L03]]

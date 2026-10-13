@@ -1,0 +1,27 @@
+visual_id: R000
+case_id: C000
+exhibit: E00
+lens: POV_GLASSES          # POV_ACTIONCAM | POV_GLASSES | POV_DASH | WIDE_RECON
+script_lines: []           # e.g. [VO_041, VO_042]
+duration_s: null           # from vo_timing.csv, never guessed
+handles_s: 1.0
+moment: ""                 # what happens, documented actions only
+time_of_day: ""
+weather: ""
+location_id: ""            # from 04_locations.csv
+grounding_source: ""       # transcript @ timestamp or research ref. Blank = cannot be produced.
+reference_images: []       # files in media:/…/02_research/reference_images/
+hud:
+  clock: ""
+  location_label: ""
+  telemetry: {}            # only real, sourced values
+  source_citation: ""      # shown on screen: "SOURCE: …"
+disclosure: true
+rules_check:
+  documented_action: false
+  faceless: false
+  no_crime_or_final_moments: false
+  not_presented_as_real_footage: true
+status: Planned            # Planned | Stills | Motion | Approved
+approved_still: null
+approved_take: null

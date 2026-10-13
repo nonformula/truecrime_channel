@@ -1,0 +1,20 @@
+# Channel-wide tool settings. Per-machine overrides go in config.local.yaml (git-ignored).
+
+# Path to the Google Drive for Desktop "True Crime Channel" folder.
+# Set this in config.local.yaml, not here, since it differs per machine.
+media_root: null
+
+cases_dir_media: Cases            # media:/Cases/<CASE_FOLDER>/
+
+transcription:
+  engine: auto                    # auto | mlx | whisperx
+  mlx_model: mlx-community/whisper-large-v3-turbo
+  whisperx_model: large-v3
+  language: en
+  video_ext: [.mp4, .mov, .mxf, .m4v, .mkv, .avi]
+  audio_ext: [.wav, .mp3, .m4a, .aif, .aiff, .flac]
+
+maps:
+  styles_file: _channel/map_styles.yaml
+  geocode_country: us             # bias for US cases; set per case in case.yaml if needed
+  low_confidence: [low, medium]   # flagged for human review

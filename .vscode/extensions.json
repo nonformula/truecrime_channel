@@ -1,0 +1,7 @@
+{
+  "recommendations": [
+    "anthropic.claude-code",
+    "mechatroner.rainbow-csv",
+    "redhat.vscode-yaml"
+  ]
+}

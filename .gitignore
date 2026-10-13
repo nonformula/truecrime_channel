@@ -1,0 +1,43 @@
+# Secrets and per-machine config
+.env
+.env.*
+!.env.example
+_channel/config.local.yaml
+
+# Media and transcripts live on Google Drive, never in git (safety net)
+*.mp4
+*.mov
+*.mxf
+*.avi
+*.mkv
+*.m4v
+*.wav
+*.mp3
+*.aif
+*.aiff
+*.m4a
+*.flac
+*.png
+*.jpg
+*.jpeg
+*.tif
+*.tiff
+*.exr
+*.psd
+*.heic
+*.webp
+*.srt
+*.vtt
+*.pdf
+!docs/*.pdf
+*.aep
+*.prproj
+*.drp
+
+# Python / OS / editors
+.venv/
+__pycache__/
+*.pyc
+.DS_Store
+.vscode/*
+!.vscode/extensions.json

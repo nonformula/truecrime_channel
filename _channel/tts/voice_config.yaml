@@ -1,0 +1,11 @@
+# Temp VO settings for vo_temp.py (Stage 5). Temp VO is never published.
+engine: elevenlabs
+voice_id: null            # pick a stock voice close to the narrator's pace and register
+model_id: null            # set to a current ElevenLabs TTS model id
+output_format: wav_44100
+stability: 0.5
+similarity_boost: 0.75
+speed: 1.0
+default_line_gap_s: 0.35  # silence added between consecutive VO lines
+file_prefix: TEMP_
+# Never clone the human narrator's voice without written consent in their contract.
