@@ -11,8 +11,10 @@ The working files for Radley's true crime YouTube channel. One folder per case u
 - **This repo (git):** text only. Briefs, timelines, scripts, indexes (CSV), shot specs, prompts, timing files, tools.
 - **Google Drive (`media:/`):** all media AND all transcripts. Footage, `.srt` transcripts, research PDFs, reference images, recreation stills/takes, temp + final VO, edit exports.
 - **Ci:** the archive of record. Media is pulled from Ci into Drive per case.
-- `media:/` resolves to `MEDIA_ROOT` (see `_channel/config.yaml`, overridable in `_channel/config.local.yaml` or the `MEDIA_ROOT` env var). Case media is at `media:/Cases/<CASE_FOLDER>/`.
-- Never copy media or transcripts into this repo. Never commit `.env`.
+- **Nothing syncs.** `tools/media.py` (rclone) pulls a case from Drive on demand into `_media/` (git-ignored) and pushes outputs back. `media:/` means `_media/` locally, mirroring `Drive:True Crime Channel/`. Case media is at `media:/Cases/<CASE_FOLDER>/`.
+- **Pull at the start of every stage, push at the end.** `media.py pull` skips video by default; use `--for-transcribe` or `--only <path>` when a step needs specific video. Free space with `media.py clear <CASE> --video-only`.
+- `media.py` only adds or updates files on Drive. Never run rclone yourself with sync, move, delete or purge.
+- Never put media or transcripts in git (`_media/` is ignored). Never commit `.env`.
 
 ## Stages (slash commands)
 
@@ -43,6 +45,7 @@ The working files for Radley's true crime YouTube channel. One folder per case u
 
 | Tool | Status |
 |---|---|
+| `media.py` | ready (needs rclone + a `gdrive` remote) |
 | `new_case.py` | ready |
 | `transcribe.py` | ready (needs `mlx-whisper` or `whisperx` + ffmpeg) |
 | `maps_pull.py` | ready (needs `MAPBOX_TOKEN` in `.env`) |

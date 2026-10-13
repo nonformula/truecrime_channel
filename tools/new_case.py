@@ -3,14 +3,16 @@
 
 Usage:
   python3 tools/new_case.py C001 Wilson Darkhorse --title "DARKHORSE"
-  python3 tools/new_case.py C002 Doe TrafficStop --no-media     # repo only (Drive not available)
+  python3 tools/new_case.py C002 Doe TrafficStop --no-media     # repo only (no Drive folders)
+
+In rclone mode (default) this also creates the case folder tree on Google Drive.
 """
 from __future__ import annotations
 
 import argparse
 import re
 
-from common import (CASE_ID_RE, CASES, CHANNEL, TEMPLATES, config, die, media_root,
+from common import (CASE_ID_RE, CASES, CHANNEL, TEMPLATES, config, die, media_mode, media_root,
                     read_csv, today, write_csv)
 
 REPO_LAYOUT = {
@@ -63,13 +65,17 @@ def main() -> None:
     title = a.title or a.keyword
     values = {"CASE_ID": a.case_id, "CASE_FOLDER": folder, "TITLE": title}
 
-    # Drive first, so a missing Drive path fails before anything is written.
+    # Check media first, so a bad setup fails before anything is written.
+    mode = media_mode()
     mdir = None
     if not a.no_media:
         root = media_root(required=True)
         mdir = root / config().get("cases_dir_media", "Cases") / folder
-        if mdir.exists():
+        if mode == "mount" and mdir.exists():
             die(f"Drive folder already exists: {mdir}")
+        if mode == "rclone":
+            import media
+            media.cmd_check(None)  # rclone installed, remote configured, Drive reachable
 
     cdir = CASES / folder
     for sub, files in REPO_LAYOUT.items():
@@ -84,6 +90,12 @@ def main() -> None:
     if mdir is not None:
         for sub in MEDIA_LAYOUT:
             (mdir / sub).mkdir(parents=True, exist_ok=True)
+        if mode == "rclone":
+            import media
+
+            class _A:  # minimal args object
+                case_id = a.case_id
+            media.cmd_mkdirs(_A)
 
     idx = CHANNEL / "master_case_index.csv"
     fields, rows = read_csv(idx)
@@ -95,9 +107,14 @@ def main() -> None:
     write_csv(idx, fields, rows)
 
     print(f"created repo case:  {cdir.relative_to(CASES.parent)}")
-    print(f"created Drive case: {mdir}" if mdir else "Drive folder skipped (--no-media)")
-    print("next: pull media from Ci into the Drive 01_assets/ folders, mark the Drive case folder")
-    print(f"      'Available offline', then run /ingest {a.case_id} in Claude Code.")
+    if mdir is None:
+        print("Drive folder skipped (--no-media)")
+    elif mode == "rclone":
+        print(f"created local cache:  {mdir}")
+    else:
+        print(f"created Drive case: {mdir}")
+    print("next: copy the case media from Ci into the Drive case folder's 01_assets/ subfolders,")
+    print(f"      then run /ingest {a.case_id} in Claude Code (it pulls what it needs).")
 
 
 if __name__ == "__main__":

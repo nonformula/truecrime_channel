@@ -1,7 +1,16 @@
 # Channel-wide tool settings. Per-machine overrides go in config.local.yaml (git-ignored).
 
-# Path to the Google Drive for Desktop "True Crime Channel" folder.
-# Set this in config.local.yaml, not here, since it differs per machine.
+# How media reaches this machine.
+#   rclone (default): nothing syncs. tools/media.py pulls a case on demand into _media/ (git-ignored,
+#                     inside this repo) and pushes new outputs back. Drive is the source of truth.
+#   mount:            Google Drive for Desktop is installed; media_root points at its folder.
+media:
+  mode: rclone
+  rclone_remote: gdrive             # the name you gave the remote in `rclone config`
+  remote_root: "True Crime Channel" # folder path inside that remote (My Drive or a shared drive)
+  local_cache: _media               # relative to the repo, or an absolute path
+
+# Only used in mount mode. Set in config.local.yaml since it differs per machine.
 media_root: null
 
 cases_dir_media: Cases            # media:/Cases/<CASE_FOLDER>/

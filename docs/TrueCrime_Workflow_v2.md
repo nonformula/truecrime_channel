@@ -1,4 +1,4 @@
-<p class="kicker">Radley · Production Workflow · v2.3 · For Review · October 12, 2026</p>
+<p class="kicker">Radley · Production Workflow · v2.4 · For Review · October 12, 2026</p>
 
 # True Crime Channel: Episode Production Workflow v2
 
@@ -42,7 +42,12 @@ The system is split across three places, each doing one job:
 | **Google Drive** | **All media and all transcripts**: footage, `.srt` transcripts, research source files, reference images, recreation takes, temp + final VO, edit exports | Shared with the team, backed up, one source for everything heavy or source-of-truth. |
 | **Ci** | The original archive | Archive of record. Media is pulled from Ci into Drive per case. |
 
-**How they connect:** the repo never copies media. Each tool and slash command resolves media paths through one setting, `MEDIA_ROOT`, in `_channel/config.yaml`, pointing at the Google Drive for Desktop folder (e.g. `~/Library/CloudStorage/GoogleDrive-…/True Crime Channel`). In this doc, any path written `media:/…` lives on Drive. Everything else lives in the repo.
+**How they connect: on demand, nothing syncs.** Google Drive is never installed or mounted on the Mac. `tools/media.py` uses **rclone** to pull a case from Drive into a git-ignored `_media/` folder inside the repo only when a stage needs it, and to push new outputs back when the stage ends. In this doc, any path written `media:/…` means that case's folder on Drive (and its local copy in `_media/` while you work).
+
+- **Pull** skips video by default: transcripts, research, reference images, maps and VO come down fast. Video comes down only for a step that needs it (`--for-transcribe`, `--only <file>`).
+- **Push** only adds or updates files on Drive. It never deletes or moves anything there, and it skips any file that is newer on Drive (a teammate's edit).
+- **Clear** removes the local copy to free space, and refuses if anything hasn't been pushed.
+- Every stage command pulls at the start and pushes at the end.
 
 ### Repo (local, text only)
 
@@ -51,13 +56,14 @@ Keep it outside any iCloud-synced folder (Desktop and Documents are often synced
 ```
 truecrime-channel/                        ← git repo (private GitHub under nonformula)
 │
-├── CLAUDE.md                             ← standing context: rules, conventions, MEDIA_ROOT
+├── CLAUDE.md                             ← standing context: rules, conventions, pull/push
 ├── STATUS.md                             ← what's in flight across all cases
-├── .gitignore                            ← safety net: media, *.srt, .env …
+├── .gitignore                            ← _media/, .env, media + *.srt safety net
+├── _media/                               ← local copy of pulled cases (git-ignored)
 ├── .claude/commands/                     ← one slash command per stage (/ingest C001 …)
 │
 ├── _channel/                             ← applies to every episode
-│   ├── config.yaml                       ← MEDIA_ROOT and tool settings
+│   ├── config.yaml                       ← media (rclone) and tool settings
 │   ├── map_styles.yaml                   ← Mapbox Studio style IDs, zoom + size presets
 │   ├── channel_bible.md                  ← lane, format rules, do/don't
 │   ├── format_chain_of_custody.md        ← episode structure template (see §5)
@@ -69,7 +75,8 @@ truecrime-channel/                        ← git repo (private GitHub under non
 │   ├── gfx_templates/                    ← AE/Premiere template refs: ledger, exhibit card, HUD
 │   └── publishing_checklist.md
 │
-├── tools/                                ← automation (Python), all read/write media via MEDIA_ROOT
+├── tools/                                ← automation (Python); media.py moves files to/from Drive
+│   ├── media.py                          ← rclone pull / push / status / clear (copy-only)
 │   ├── new_case.py                       ← scaffold repo case folder + matching Drive folder
 │   ├── transcribe.py                     ← WhisperX → .srt saved next to each video on Drive
 │   ├── maps_pull.py                      ← geocode locations + pull sample maps from Mapbox
@@ -101,7 +108,7 @@ truecrime-channel/                        ← git repo (private GitHub under non
 Same case IDs and folder numbers as the repo, so every path lines up.
 
 ```
-True Crime Channel/                       ← MEDIA_ROOT
+True Crime Channel/                       ← Drive (rclone remote gdrive:)
 │
 ├── _channel/                             ← shared AE templates, fonts, LUTs, HUD elements
 │
@@ -131,20 +138,22 @@ True Crime Channel/                       ← MEDIA_ROOT
             └── record_script.pdf
 ```
 
-### Drive settings that matter
+### Media handling that matters
 
-- **Make the active case "Available offline."** Drive for Desktop streams files on demand by default, which is too slow for transcription, scrubbing footage and editing. Right-click the case folder → Available offline while you work on it, then switch it back to stream when it ships.
-- **Transcripts are versioned by Drive, not git.** Drive keeps version history on each `.srt`, so a corrected transcript can be rolled back there. If a transcript is corrected after indexing, re-run `/ingest` for that asset so the index and timeline pick up the change.
-- **Claude reads transcripts through the Drive for Desktop mount**, so Claude Code sees them as local files. No connector needed, but the folder must be synced (or offline) on the machine running the session.
+- **One-time rclone setup per machine:** `brew install rclone`, then `rclone config` to add a remote named `gdrive` (browser sign-in once; choose the shared drive if the channel folder lives on one). `python3 tools/media.py check` confirms it works.
+- **Transcripts are versioned by Drive, not git.** Drive keeps version history on each `.srt`. If a transcript is corrected after indexing, re-run `/ingest` for that asset so the index and timeline pick up the change.
+- **Free space after heavy steps.** `media.py clear C001 --video-only` removes local video once transcripts are pushed.
+- **Prefer Drive for Desktop?** Set `media.mode: mount` and `media_root` in `_channel/config.local.yaml`; everything else works the same.
 
 ### Why this split
 
 - **Claude Code works natively on a local folder.** Stages become slash commands, tools run directly, and several cases can be processed at once.
 - **Git gives you history and rollback** on everything Claude writes. Commit at each gate as a checkpoint.
 - **Drive gives the team one shared home for media** without git, LFS or large-file pain.
-- **`CLAUDE.md` holds the rules once,** including where `MEDIA_ROOT` points.
+- **Nothing heavy lives on the Mac** unless a step needs it, and nothing runs in the background.
+- **`CLAUDE.md` holds the rules once,** including the pull/push habit.
 
-**Trade-offs to plan for:** team members who don't use git need either light onboarding or a read-only Drive folder of exported scripts and briefs. Every machine running the tools needs Drive for Desktop signed in to the same account or shared drive, with the same folder path (or its own `MEDIA_ROOT` in a local, untracked config).
+**Trade-offs to plan for:** team members who don't use git need either light onboarding or a read-only Drive folder of exported scripts and briefs. Every machine running the tools needs rclone connected to the same Drive or shared drive. The one habit to keep is pushing: the stage commands do it automatically, and `media.py status` shows anything left behind.
 
 ### Rules that make this work
 
@@ -358,9 +367,9 @@ File names follow `[CASE]_[LOCATION]_[ZOOM].png`, e.g. `C001_L03_neighborhood.pn
 ## 11. How to start (pilot)
 
 1. Create the repo in a non-iCloud folder (e.g. `~/Dev/truecrime-channel`) with `CLAUDE.md`, `_channel/` and `tools/`. Add the `.gitignore` first and push to a private GitHub repo.
-2. Install Google Drive for Desktop, set `MEDIA_ROOT`, and scaffold `C001_Wilson_Darkhorse` with `new_case.py` (creates both the repo and Drive folders). Pull its media from Ci into the Drive `01_assets/` and mark the folder Available offline.
+2. Install rclone and connect it to Drive (`rclone config`, then `media.py check`). Scaffold `C001_Wilson_Darkhorse` with `new_case.py` (creates the repo folder and the Drive folder tree). Copy its media from Ci into the Drive `01_assets/` subfolders.
 3. Run `/ingest C001`. Everything downstream flows from a clean index.
-4. Build the tools just before the stage that needs them: `new_case.py` + `transcribe.py` + `maps_pull.py` (Stage 1) → `vo_temp.py` + `shotlist.py` (after the first script) → `validate.py` (before Stage 10) → `gen_batch.py` (after the pilot).
+4. Build the tools just before the stage that needs them: `media.py` + `new_case.py` + `transcribe.py` + `maps_pull.py` (Stage 1) → `vo_temp.py` + `shotlist.py` (after the first script) → `validate.py` (before Stage 10) → `gen_batch.py` (after the pilot).
 
 **Open items / not yet verified:**
 

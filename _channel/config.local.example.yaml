@@ -1,2 +1,12 @@
-# Copy to config.local.yaml (git-ignored) and set your own path.
-media_root: "~/Library/CloudStorage/GoogleDrive-YOUR_ACCOUNT/My Drive/True Crime Channel"
+# Optional per-machine overrides. Copy to config.local.yaml (git-ignored).
+# Only set what differs from _channel/config.yaml on this machine.
+
+# rclone mode (default): only needed if your remote has a different name or path
+# media:
+#   rclone_remote: gdrive
+#   remote_root: "True Crime Channel"
+
+# mount mode (Google Drive for Desktop installed instead):
+# media:
+#   mode: mount
+# media_root: "~/Library/CloudStorage/GoogleDrive-YOUR_ACCOUNT/My Drive/True Crime Channel"

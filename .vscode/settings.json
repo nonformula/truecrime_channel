@@ -1,0 +1,5 @@
+{
+  "files.watcherExclude": { "**/_media/**": true, "**/.venv/**": true },
+  "search.exclude": { "**/_media/**": true, "**/.venv/**": true },
+  "files.exclude": { "**/__pycache__": true }
+}
