@@ -30,6 +30,7 @@ _media/
 *.psd
 *.heic
 *.webp
+*.avif
 *.srt
 *.vtt
 *.pdf
@@ -49,3 +50,19 @@ __pycache__/
 
 edit/
 
+
+# Uppercase variants (gitignore patterns are case-sensitive)
+*.MP4
+*.MOV
+*.MXF
+*.AVI
+*.MKV
+*.M4V
+*.WAV
+*.MP3
+*.M4A
+*.PNG
+*.JPG
+*.JPEG
+*.SRT
+*.PDF

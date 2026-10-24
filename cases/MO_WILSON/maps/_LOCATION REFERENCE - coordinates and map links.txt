@@ -1,0 +1,109 @@
+MO WILSON CASE - LOCATION REFERENCE
+For map builds and AI environment reference. Coordinates verified via Google Places.
+OSM links are open-license; screengrabs from them are safe as reference and as base layers.
+
+--------------------------------------------------------------------
+AUSTIN, TEXAS
+--------------------------------------------------------------------
+
+DEEP EDDY MUNICIPAL POOL
+401 Deep Eddy Ave, Austin, TX 78703
+30.2768478, -97.7727845
+https://www.openstreetmap.org/#map=18/30.27685/-97.77278
+Afternoon of May 11, 2022. Strickland brought Wilson here by motorcycle.
+
+POOL BURGER  [UNCONFIRMED]
+2315 Lake Austin Blvd, Austin, TX 78703
+30.2778544, -97.7725774
+https://www.openstreetmap.org/#map=18/30.27785/-97.77257
+Adjacent to Deep Eddy. Fits the transcript description of the restaurant whose
+security camera recorded the two of them, but the transcript never names it.
+VERIFY before use.
+
+TRAVIS COUNTY CRIMINAL COURT
+509 W 11th St, Austin, TX 78701
+30.2735535, -97.7459385
+https://www.openstreetmap.org/#map=17/30.27355/-97.74594
+Trial Nov 1 2023. Verdict, 90-year sentence.
+
+APARTMENT (murder scene)  [ADDRESS NOT IN CASE FOLDER]
+Not confirmed. Should be in Travis County court filings.
+NOTE: a prior draft of the read-me in this folder listed "Maple Ave" - that was
+not sourced from the case materials. Disregard it.
+Recommend block-level abstraction in any published map. Private residence,
+current occupants.
+
+COLIN STRICKLAND RESIDENCE  [ADDRESS NOT IN CASE FOLDER]
+Not confirmed. Same sourcing note and same privacy recommendation.
+
+--------------------------------------------------------------------
+FLIGHT PATH
+--------------------------------------------------------------------
+
+NEWARK LIBERTY INTERNATIONAL AIRPORT
+Newark, NJ 07114
+40.6884837, -74.1768636
+https://www.openstreetmap.org/#map=13/40.68848/-74.17686
+Departure point. One-way to Costa Rica on sister's passport.
+
+SISTER'S RESIDENCE, UPSTATE NEW YORK  [NOT LOCATED]
+Referenced in transcript only. No town named. Recommend leaving as a
+region marker rather than a pin.
+
+--------------------------------------------------------------------
+COSTA RICA
+--------------------------------------------------------------------
+
+SAN JOSE  [coordinates not pulled]
+Arrival city. Also where the plastic surgery took place, per transcript.
+
+JACO
+Puntarenas Province
+9.6141843, -84.6278479
+https://www.openstreetmap.org/#map=13/9.61418/-84.62785
+Yoga studio where the American businessman met her. First marshal search. Bust.
+
+SANTA TERESA (town)
+Puntarenas Province
+9.6414557, -85.1652687
+https://www.openstreetmap.org/#map=14/9.64146/-85.16527
+Single-road beach town. Second search area.
+
+DON JONS SURF & YOGA LODGE
+150m north of the football plaza, Santa Teresa, Puntarenas 60111
+9.640668, -85.1645281
+https://www.openstreetmap.org/#map=19/9.64067/-85.16453
+Arrest site, June 2022. STILL OPERATING - current exterior and interior photos
+are on its Google listing and its own site, donjonslodge.com. Best available
+environment reference for the Costa Rica act.
+
+--------------------------------------------------------------------
+VERMONT
+--------------------------------------------------------------------
+
+KINGDOM TRAILS
+478 VT-114, East Burke, VT 05832
+44.5876464, -71.9449981
+https://www.openstreetmap.org/#map=14/44.58765/-71.94500
+Where Wilson grew up riding. "Mariah's Ascent" trail built in her honor.
+Closing-sequence location.
+
+--------------------------------------------------------------------
+MAP BUILD NOTES
+--------------------------------------------------------------------
+
+Three layers worth building:
+
+1. AUSTIN BLOCK LEVEL - pool, restaurant, apartment, Strickland residence.
+   The point is how small the geography was. Needs the two missing addresses.
+
+2. THE FLIGHT - Austin, upstate NY, Newark, San Jose. Passport is the hinge.
+
+3. COSTA RICA TIMING - San Jose, Jaco, Santa Teresa. The strongest graphic
+   available: the marshals were searching Santa Teresa while she was back in
+   San Jose having surgery. They missed each other in time, not in space.
+   No existing coverage has visualized this.
+
+For production maps use Mapbox Studio (custom styling, clean commercial license)
+or Google Earth Studio for the animated flight path. Google Maps screengrabs are
+not cleared for monetized video.
