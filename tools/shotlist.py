@@ -1,11 +1,11 @@
 #!/usr/bin/env python3
 """NOT BUILT YET.
 
-Stages 5 and 8: vo_timing.csv + script cues -> visual durations in visual_index.csv, 09_edit/shotlist.csv, and later --edl for Premiere/Resolve. Build with vo_temp.py.
+Stages 6b and 9: VO timing + script segments -> sequence timing and shotlist, accounting for authentic audio, overlaps, holds and transitions; later --edl for Premiere/Resolve.
 
-Until it exists, follow the manual path in the matching .claude/commands/ stage and keep the
-same file names and formats so this tool can take over later.
+Until it exists, do the stage by hand through the true-crime-channel plugin skill for that stage
+(source: _channel/claude_plugin/src/skills/).
 """
 import sys
 
-sys.exit("tools/shotlist.py is not built yet. See its docstring and the stage command for the manual path.")
+sys.exit("tools/shotlist.py is not built yet. See its docstring for the manual path.")
