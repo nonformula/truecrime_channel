@@ -1,0 +1,33 @@
+# Production stages 7–12 — Content Creation System v3.2
+
+Read only the requested stage plus its prerequisites. Use the common rules, data contract and segment format. Available tools and actual outputs determine completion; instruction coverage is not tool implementation.
+
+## 7 — Visual plan
+Input: reviewed script, beat sheet, opening-test decisions and current sequence timing. For each necessary visual, create a Visuals row with purpose, linked segments, grounding evidence, references, planned/measured length, handles, treatment, labels and use status.
+Maps: use verified locations/privacy and distinguish documented routes from schematic connections.
+Map generation: candidates are every key location in Locations plus any location tied to a person in People. Generate only after source, relevance and privacy review and with human-verified coordinates. Pull from Mapbox with the project key (never write the token into a case document or prompt output) in the single approved black and white dark style recorded in the channel's map style config, at 2K: 2048 × 1152, 16:9. Name files `[CASE]_[LOCATION]_[ZOOM].png`, e.g. `C001_L03_neighborhood.png`, and save to the case production folder's `MAPS/`. Wide and neighborhood context first; close views only for approved public locations. Private residences stay at neighborhood level or a restrained stylized pin, no readable house numbers or street views. Log every location that fails review or lacks usable coordinates in a skipped-locations list with the reason; never drop one silently. Record map_files/map_status in Locations. Include provider attribution and check current commercial-use terms before release. If no Mapbox execution path exists, deliver the location list, zooms and filenames as a handoff and mark maps pending. Graphics: exact source wording/page crop, readable evidence highlights, meaningful comparisons, optional knowledge states. Recreation: event grounding and appearance reference are separate; illustrative tribute explicitly states that it is not an exact documented event. Do not require a preset number of shots or per-person lenses.
+Deliver: Production Plan Visuals tab plus linked shot/graphics briefs where detail requires them. Producer reviews the plan. No image generation is implied by approving a written plan.
+
+## 8 — Graphics and selected recreations
+Input: approved plan and references, available generation/graphics tools, authorized spend. Produce stills first; obtain look/continuity review, then motion for approved shots. Log tool/model version, prompt, settings, seed if provided, source/reference IDs, takes and approved take. Keep logs in the case production folder; save media there or another explicitly authorized output location.
+Add readable labels/citations in post. Check output for invented objects/actions, misleading POV, fabricated text and inappropriate sound. A good prompt is not evidence of a compliant image. If generation tools are missing, deliver executable briefs and a take-review checklist, mark production pending, and do not create fake media links.
+Deliver: approved graphics/takes, labels and logs. Gate is review of actual visuals, not specs alone.
+
+## 9 — Full assembly and density review
+Input: script, selects, temp audio, visuals and editing capability. Build or hand off an edit with exact sources, timeline placements, layers and clear placeholder status. Only call it assembled when a watchable export exists. Inspect it or record the editor/producer's actual review; never claim to have watched an inaccessible file.
+Evaluate progression, repetition, unsupported implications, human context and authentic moments. Runtime 15–30 minutes; running toward the 30-minute ceiling needs identifiable story value. Remove repetition before substantive evidence. Reconcile accepted edit changes to script/beat/timing records without renumbering IDs. Silence can earn its place. Returning to teaser footage must add context.
+Deliver: actual cut link when available, measured timing, review notes and reconciled documents; otherwise assembly handoff with pending status. Producer gate applies to the cut.
+
+## 10 — Human final VO and finishing
+Prepare a recording script with VO IDs, pronunciation, context, attribution and pickup notes. Link human recorded takes to IDs; temporary synthesis is not final narration. Update measured timing and flag affected shots; handles may not absorb every change. Complete sound/color, graphics/labels and captions with available tools or assign explicit editor tasks.
+Deliver: final recording package, final take inventory and finished review export when produced. Readiness: no temp VO or placeholders remain in the actual review export. Never claim this from script filenames alone.
+
+## 11 — Factual, editorial and use review
+Input: actual finished export/project inventory, current source-linked script, source revisions and permissions. Check every factual/visual/audio claim and its context, exact quotes, clocks, comparisons, attribution, retrospective reveals, privacy and source-use approvals. Check all tracks/nested sequences and the export for temporary audio, prohibited images, unapproved substitutions and missing labels. Review named-person portrayals with the production's designated reviewer; do not invent legal clearance.
+If export inspection or project inventory is unavailable, provide the review packet and mark the corresponding checks pending. Automated consistency checks never substitute for human review of meaning.
+Deliver: fact-check report, use/rights report, issues/owners and go/no-go. Go requires all blocking findings resolved and actual reviewer decisions recorded with revisions.
+
+## 12 — Release package and archive
+Input: approved finished version. Draft title options, evidence-based thumbnail concept, concise description, source credits, reconstruction disclosure, checked captions and chapters from actual final timing. Apply the same source and claim policy to marketing/cutdowns. Verify current platform disclosure controls when preparing an actual upload, not from assumed historical settings.
+Archive exact final export/project links, source/transcript revisions, permissions and reports. Verify uploaded outputs before removing any authorized temporary local copies. Record lessons for the next episode. Do not modify global standards without the user's requested scope.
+Deliver: release-ready package and archive manifest. Upload/publish only when separately authorized and tools support it; “process all stages” does not silently publish. Record Published only after actual successful publication with its URL/date. Later substantive changes reopen relevant reviews.

@@ -1,0 +1,12 @@
+{
+  "source": "../claude_plugin/true-crime-channel.plugin",
+  "sha256": "688869a5be4bbce611991dd3bedbd24eb5c457e6976a07600a9a05679b242d03",
+  "source_version": "3.2.0",
+  "codex_version": "3.2.1",
+  "workflow": "Content Creation System v3.2",
+  "changes": [
+    "Codex manifests and local marketplace",
+    "Codex runtime reference added to each skill",
+    "Original stage instructions and eight shared references preserved"
+  ]
+}

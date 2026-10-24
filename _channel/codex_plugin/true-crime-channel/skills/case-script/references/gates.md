@@ -1,0 +1,9 @@
+# Continuation and review
+
+A request for a stage authorizes normal output drafting/writing for that stage. A request “through script” authorizes preparing intervening drafts, not recording unreceived producer approvals. Do useful independent work while a review is pending; do not re-ask an approval already received for the unchanged artifact. Respect explicit user decisions to consolidate gates, recording that decision. Factual uncertainty and missing tools cannot be approved into facts or execution capability.
+
+Default review points: verified hook/selects; brief; spine; actual opening test; pre-script (5b); full script (6a); visual plan; selected final visuals; full assembly; final factual/use review; release package. Temp VO (6b) and final VO/finishing have readiness checks. Temp VO never starts before the full-script gate passes; the full script never starts before the pre-script gate passes, unless the user explicitly consolidates those gates and the decision is recorded. Stage-specific skills define the required evidence. Drafts may proceed with clearly identified dependencies; final production of dependent visuals should wait for the relevant creative decision.
+
+If a user requests a specific later stage, inspect prerequisites and explain only the blockers that matter. Never silently restart ingest, rewrite approved material or invent unavailable outputs. Save checkpoints and end with completed outputs, pending decisions and the next action.
+
+No background service is included. Work runs in the current active session using available tools. On interruption, save progress when possible; “resume case” reads persisted state. Do not promise it will keep running after chat closes. Publishing, new paid services, messages to outside parties and permissions changes require their own user authorization unless already clearly included in the task.

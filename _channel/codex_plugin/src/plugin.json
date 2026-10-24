@@ -1,0 +1,9 @@
+{
+  "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
+  "name": "true-crime-channel",
+  "version": "3.2.1",
+  "description": "Radley evidence-led true-crime production workflow for Codex, with Google Drive case documents.",
+  "author": {
+    "name": "Radley"
+  }
+}

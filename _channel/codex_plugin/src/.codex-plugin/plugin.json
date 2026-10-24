@@ -1,0 +1,19 @@
+{
+  "name": "true-crime-channel",
+  "version": "3.2.1",
+  "description": "Radley evidence-led true-crime production workflow for Codex, with Google Drive case documents.",
+  "author": {
+    "name": "Radley"
+  },
+  "skills": "./skills/",
+  "interface": {
+    "displayName": "True Crime Channel",
+    "shortDescription": "Evidence-led case research, scripts and production",
+    "developerName": "Radley",
+    "category": "Productivity",
+    "defaultPrompt": [
+      "Resume this case from its saved Google Drive Case Record.",
+      "Write the pre-script for this case."
+    ]
+  }
+}
